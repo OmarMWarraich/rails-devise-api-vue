@@ -12,7 +12,14 @@ module DeviseVue
     config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
+    config.load_defaults 7.0
     #
+    # This also configures sessions_options for use below
+    config.session_store :cookie_store, key: '_interslice_session'
+    # Required for all session management (regardless of session_store)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
